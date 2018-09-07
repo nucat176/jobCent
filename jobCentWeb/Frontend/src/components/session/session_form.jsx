@@ -6,24 +6,27 @@ class SessionForm extends React.Component {
     super(props);
 
     this.state = {
-      email: "aaa@gmail.com",
+      email: "",
       code: ""
     };
   }
 
   renderErrors() {
     if (this.props.errors) {
-      return (
-        <ul className="errors">
-          {this.props.errors.map((error, idx) => (
-            <li key={`${idx}`}>{error}</li>
-          ))}
-        </ul>
-      );
+      console.log(this.props.errors);
+      
+      // return (
+      //   <ul className="errors">
+      //     {this.props.errors.map((error, idx) => (
+      //       <li key={`${idx}`}>{error}</li>
+      //     ))}
+      //   </ul>
+      // );
     }
   }
 
   update(input) {
+    // console.log(this.state);
     return e =>
       this.setState({
         [input]: e.currentTarget.value
@@ -55,6 +58,7 @@ class SessionForm extends React.Component {
                   spellCheck="true"
                   noValidate="true"
                   className="login-form"
+                  onSubmit={this.handleSubmit}
                 >
                   <div className="field">
                     <input
@@ -66,6 +70,7 @@ class SessionForm extends React.Component {
                       autoCapitalize="none"
                       className="text-field"
                       placeholder="Email address"
+                      onChange={this.update("email")}
                     />
                   </div>
 
@@ -84,7 +89,7 @@ class SessionForm extends React.Component {
                 </form>
               </div>
             </section>
-
+            {this.renderErrors()}
             <div className="modal-manager ">
               <div className="modal-overlay " />
             </div>
@@ -107,6 +112,7 @@ class SessionForm extends React.Component {
                   spellCheck="true"
                   noValidate="true"
                   className="login-form"
+                  onSubmit={this.handleSubmit}
                 >
                   <div className="field">
                     <input
@@ -118,6 +124,7 @@ class SessionForm extends React.Component {
                       autoCapitalize="none"
                       className="text-field"
                       placeholder="Confirmation Code"
+                      onChange={this.update("code")}
                     />
                   </div>
 
@@ -136,7 +143,7 @@ class SessionForm extends React.Component {
                 </form>
               </div>
             </section>
-
+            {this.renderErrors()}
             <div className="modal-manager ">
               <div className="modal-overlay " />
             </div>
