@@ -14,12 +14,16 @@ const isValid = otplib.authenticator.check(token, secret);
 // const isValid2 = otplib.authenticator.verify({ token, notSecret });
 // const isValid3 = otplib.authenticator.check(token, notSecret);
 
-
-console.log(secret);
-console.log(token);
-console.log(isValid);
+// console.log(secret);
+// console.log(token);
+// console.log(isValid);
 // console.log(isValid1);
 // console.log(isValid2);
 // console.log(isValid3);
-
+// console.log(otplib.authenticator.generate("secret"));
+// console.log(otplib.authenticator.generate("secret"));
+// console.log(otplib.authenticator.generate("secret"));
+// console.log(otplib.authenticator.generate("secret"));
+// console.log(otplib.authenticator.generate("secret"));
+// console.log(otplib.authenticator.generate("secret"));
 

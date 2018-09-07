@@ -5,27 +5,48 @@ module.exports = {
   create(req, res) {
     User.findOne({ where: { email: req.body.email } })
       .then(user => {
-        const confirmationCode = req.body.code;
         if (user) {
-          const time = Date.now();
-          console.log(typeof confirmationCode + " " + confirmationCode);
+          const confirmationCode = req.body.code;
+          const expired = Date.now() > user.otpExp;
+          const validCode =
+          otplib.authenticator.check(confirmationCode, user.otpKey) &&
+          !expired;
           console.log(typeof user.otpKey + " " + user.otpKey);
-
-          const validCode = otplib.authenticator.check(
-            confirmationCode,
-            user.otpKey
-          ) && user.otpExp > Date.now();
+          console.log(typeof confirmationCode + " " + confirmationCode);
+          console.log("expired? " + expired);
           console.log("is the code valid? " + validCode);
           if (validCode) {
             console.log("code valid! logging in...");
+            //since user confirmed their email via the code, set their status to active
+            user
+              .update({
+                active: true
+              })
+              .then(user => {
+                const { id, email } = user.dataValues;
+                const userInfo = { id, email };
+                req.session.user = userInfo;
+                res.send({ user: userInfo });
+              });
           } else {
-            console.log("code invalid");
+            res.status(400).send({
+              errors: [
+                "That doesn't look like the code we sent to " + req.body.email
+              ]
+            });
           }
         } else {
-          console.log("no user found");
+          res.status(400).send({ errors: ["user not found"] });
         }
       })
-      .then(user => res.status(200).send(user))
       .catch(error => res.status(400).send(error));
+  },
+  destroy(req, res) {
+    if (req.session.user && req.cookies.session_token) {
+      res.clearCookie("session_token");
+      res.status(200).send("Logged out successfully");
+    } else {
+      res.status(404).send("No user logged in to log out!");
+    }
   }
 };

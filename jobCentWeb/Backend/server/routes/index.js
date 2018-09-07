@@ -11,4 +11,5 @@ module.exports = app => {
 
   app.post("/api/user", usersController.create);
   app.post("/api/session", sessionController.create);
+  app.delete("/api/session", sessionController.destroy);
 };
