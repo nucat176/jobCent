@@ -6,7 +6,7 @@ class SessionForm extends React.Component {
     super(props);
 
     this.state = {
-      email: "",
+      email: "aaa@gmail.com",
       code: ""
     };
   }
@@ -65,35 +65,27 @@ class SessionForm extends React.Component {
                       spellCheck="false"
                       autoCapitalize="none"
                       className="text-field"
-                      placeholder="Email"
+                      placeholder="Email address"
                     />
                   </div>
 
-                  <div className="alias-submit fade-in immediate ">
-                    <div
-                      id="ember458"
-                      className="cta submit-button-component submit-button-with-spinner ember-view"
-                    >
+                  <div className="alias-submit">
+                    <div className="submit-button-component ">
                       <button
                         type="submit"
                         aria-label="Request Sign In Code"
-                        className="button theme-button theme-button"
-                        data-ember-action=""
-                        data-ember-action-459="459"
+                        className="theme-button"
                       >
                         Request Sign In Code
                       </button>
-                      <div
-                        id="ember464"
-                        className="spinner-container ember-view"
-                      />
+                      <div className="spinner-container " />
                     </div>
                   </div>
                 </form>
               </div>
             </section>
 
-            <div id="ember467" className="modal-manager ember-view">
+            <div className="modal-manager ">
               <div className="modal-overlay " />
             </div>
           </div>
@@ -101,9 +93,54 @@ class SessionForm extends React.Component {
       );
     } else {
       return (
-        <div>
-          login
-          <div />
+        <div className="signup-form">
+          <div className="signup-component">
+            <div />
+            <section className="flex-container">
+              <div className="login-container">
+                <h1 className="step-title">
+                  Cool! We emailed a code to {this.state.email}
+                </h1>
+
+                <form
+                  autoComplete="off"
+                  spellCheck="true"
+                  noValidate="true"
+                  className="login-form"
+                >
+                  <div className="field">
+                    <input
+                      type="text"
+                      aria-label="confirmation code"
+                      name="alias"
+                      autoComplete="off"
+                      spellCheck="false"
+                      autoCapitalize="none"
+                      className="text-field"
+                      placeholder="Confirmation Code"
+                    />
+                  </div>
+
+                  <div className="alias-submit">
+                    <div className="submit-button-component ">
+                      <button
+                        type="submit"
+                        aria-label="Request Sign In Code"
+                        className="theme-button"
+                      >
+                        Sign In
+                      </button>
+                      <div className="spinner-container " />
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </section>
+
+            <div className="modal-manager ">
+              <div className="modal-overlay " />
+            </div>
+          </div>
         </div>
       );
     }
