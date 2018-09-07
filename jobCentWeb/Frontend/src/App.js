@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Landing from "./components/landing";
-import { AuthRoute, ProtectedRoute } from "../util/route_util";
+import { AuthRoute, ProtectedRoute } from "./util/route_util";
 import { Route, Switch } from "react-router-dom";
 import "./scss/App.css";
 import Test from "./components/test";
