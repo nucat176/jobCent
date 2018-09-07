@@ -50,7 +50,7 @@ class Landing extends React.Component {
               >
                 About
               </Link>
-              <Link to="/login" className="button button-round">
+              <Link to="/signup" className="button button-round">
                 Sign In
               </Link>
             </div>
@@ -87,7 +87,7 @@ class Landing extends React.Component {
                   {/* <Link to="/test" className="test-button">
                     Loreum
                   </Link> */}
-                  <div className="test-button">Sign In</div>
+                  <Link to="/signup" className="test-button">Sign In</Link>
                 </div>
               </header>
 

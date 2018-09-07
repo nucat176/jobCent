@@ -1,0 +1,104 @@
+.signup-form {
+  /* color: white; */
+  background-color: #0bb634;
+}
+
+.signup-component {
+  min-width: 320px;
+  height: 100vh;
+  position: relative;
+  z-index: 1;
+  min-height: 100%;
+  min-height: 100vh;
+}
+
+.flex-container {
+  text-align: center;
+  font-size: 18px;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100vh;
+  padding-right: 24px;
+  padding-left: 24px;
+}
+
+.login-container {
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 0 auto;
+  min-height: 0;
+  min-width: 0;
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+
+@media (max-width: 767px) {
+  .login-container {
+    max-width: 324px;
+  }
+}
+
+.step-title {
+  color: white;
+  margin: 0.67em 0;
+  margin-top: 0;
+  flex: 0 0 auto;
+  width: 100%;
+  margin-bottom: 32px;
+  font-size: 24px;
+  font-weight: 500;
+  text-align: center;
+  min-height: 2.4em;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.login-form {
+  color: #fff;
+  text-align: center;
+  font-size: 18px;
+  margin: 0;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.field {
+  color: #fff;
+  text-align: center;
+  font-size: 18px;
+  position: relative;
+  z-index: 1;
+}
+
+.text-field {
+  border-radius: 4px;
+  outline: 0;
+  text-align: center;
+  margin-bottom: 16px;
+  height: 55px;
+  font-size: 18px;
+  width: 100%;
+}
