@@ -28,7 +28,7 @@ export const Bubbles = () => (
         {/* </div> */}
       </div>
     </div>
-    <div className="bubble-marker layer2 bubble-marker1">
+    {/* <div className="bubble-marker layer2 bubble-marker1">
       <figure className="bubble medium color21 oscillate1" />
     </div>
     <div className="bubble-marker layer4 bubble-marker2">
@@ -129,6 +129,6 @@ export const Bubbles = () => (
     </div>
     <div className="bubble-marker layer0 bubble-marker34">
       <figure className="bubble medium color11 oscillate1" />
-    </div>
+    </div> */}
   </div>
 );

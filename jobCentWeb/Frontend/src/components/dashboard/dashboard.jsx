@@ -21,7 +21,32 @@ class Dashboard extends React.Component {
 
   activityTab() {
     if (this.state.formType === "Activity") {
-      return <Activity />;
+      return (
+        <section className="flex-container activity-history">
+          <div className=" activity-list-container  ">
+            {" "}
+            <div id="ember2453" className="activity-list-sections ">
+              {" "}
+              <div className="activity-no-results">
+                <div className="inline-svg-two ">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84 84">
+                    <path d="M80 42c0 20.949-17.051 38-38 38S4 62.949 4 42 21.051 4 42 4s38 17.051 38 38zm4 0C84 18.842 65.158 0 42 0S0 18.842 0 42s18.842 42 42 42 42-18.842 42-42z" />
+                    <path d="M40 22V46.865l1.075.56 16 8.348 1.85-3.546-16-8.348L44 45.652V22h-4z" />
+                  </svg>
+                </div>
+                <h3 className="title-activity">No Activity Yet</h3>
+                <a
+                  title="New"
+                  className="initiate-payment"
+                  onClick={this.handleInput("formType")}
+                >
+                  Create a Payment
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
     }
   }
   jobCentsTab() {
@@ -52,11 +77,11 @@ class Dashboard extends React.Component {
               <a
                 title="jobCents"
                 onClick={this.handleInput("formType")}
-                className="action-button"
+                className="action-button action-b-left"
               >
                 No
               </a>
-              <a onClick={this.logOut} className="action-button">
+              <a onClick={this.logOut} className="action-button action-b-right">
                 Yes
               </a>
             </div>

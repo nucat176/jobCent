@@ -81,10 +81,9 @@ export const Activity = () => (
           </div>
           <h3 className="title-activity">No Activity Yet</h3>
           <a
-            href=""
+            title="New"
             className="initiate-payment"
-            data-ember-action=""
-            data-ember-action-2459="2459"
+            onClick={this.props.handleInput("formType")}
           >
             Create a Payment
           </a>

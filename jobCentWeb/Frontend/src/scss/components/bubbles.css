@@ -7,7 +7,7 @@
 }
 
 .jobcent-logo {
-  /* max-width: 80vw; */
+  max-width: 120vw;
   /* max-height: 50vh; */
   -webkit-animation: scale 15s ease-in-out infinite;
   animation: scale 15s ease-in-out infinite;

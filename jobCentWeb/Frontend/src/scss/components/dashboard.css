@@ -32,7 +32,8 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  background: #0bb634;
+  background: #204fc7;
+  /* background: #0bb634; */
   position: -webkit-sticky;
   position: sticky;
   z-index: 2;
@@ -282,6 +283,130 @@ a {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+.modal-scroller {
+  opacity: 1;
+  transition: opacity 0.3s 0.2s linear;
+  transition-delay: 0.5s;
+  position: fixed;
+  z-index: 21;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* display: -webkit-flex; */
+  display: -ms-flexbox;
+  display: flex;
+  /* -webkit-flex-direction: column; */
+  -ms-flex-direction: column;
+  flex-direction: column;
+  /* -webkit-align-items: center; */
+  -ms-flex-align: center;
+  align-items: center;
+  /* -webkit-justify-content: flex-start; */
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  min-width: 320px;
+  overflow-y: auto;
+}
+
+.modal-window {
+  -webkit-box-orient: vertical;
+  align-self: center;
+  position: relative;
+  z-index: 1;
+  padding: 0;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  background: #fff;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  min-height: 100%;
+  width: 100%;
+  cursor: default;
+  animation: fadeIn 0.2s ease-in both;
+}
+
+.modal-window-content {
+  position: relative;
+  z-index: 1;
+  /* flex: 1 0 auto; */
+  flex: 0 0 auto;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 45px;
+  min-width: 320px;
+  width: 100%;
+}
+
+.instructions {
+  margin-bottom: 0;
+  font-size: 15px;
+  line-height: 1.444444;
+}
+
+.modal-action-bar {
+  flex-direction: row;
+  width: 100%;
+  border-top: 1px solid #ebebeb;
+  overflow: hidden;
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+
+.action-button {
+  float: left;
+  padding: 17px 20px 19px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 19px;
+  border-top: 1px solid #d9d9d9;
+  flex: 1 1 auto;
+  height: 60px;
+  color: #999;
+  background: 0 0;
+  border: none;
+  font-size: 18px;
+  font-weight: 500;
+  color: #00c730;
+  width: 50%;
+}
+
+.action-button:active {
+  background: #f7f7f7;
+}
+/* .action-b-right {
+  outline: 0;
+  background: #f7f7f7;
+} */
+.action-b-left {
+  border-right: 1px solid #ebebeb;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .myJobCents {
   display: flex;
   flex-direction: column;
@@ -432,4 +557,97 @@ a {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.edit-panel {
+  padding-right: 24px;
+  padding-left: 24px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  max-width: 880px;
+  width: 100%;
+  padding-top: 35px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.config-column {
+  margin-left: -24px;
+  margin-right: -24px;
+}
+
+.name-header {
+  margin-top: 0;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 1.6px;
+  color: #999;
+  margin-bottom: 10px;
+  padding-left: 20px;
+}
+
+.name-container {
+  overflow: hidden;
+  background: #fff;
+  border-radius: 0;
+  margin-bottom: 35px;
+}
+
+.name-field {
+  position: relative;
+  z-index: 1;
+  height: 70px;
+  font-size: 18px;
+  background: #fff;
+  border: none;
+  padding: 25px;
+  padding-top: 20px;
+}
+
+.name-field-container {
+  position: relative;
+  z-index: 1;
+  height: 70px;
+  font-size: 18px;
+  background: #fff;
+  border: none;
+  position: relative;
+  z-index: 1;
+}
+
+.name-text-field {
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0;
+  vertical-align: baseline;
+  display: block;
+  height: 42px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 0;
+  outline: #ccc solid 1px;
+  -webkit-appearance: none;
+  border: none;
+  outline: 0;
+  width: 100%;
+  line-height: 1;
+  height: 1.5em;
+  padding: 0;
+  font-size: inherit;
+}
+
+.name-text-field::placeholder {
+  font-weight: 100px;
+  opacity: 0.5;
 }
