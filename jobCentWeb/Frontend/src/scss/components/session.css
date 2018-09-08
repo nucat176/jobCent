@@ -53,6 +53,11 @@
     max-width: 324px;
   }
 }
+@media (min-width: 768px) {
+  .login-container {
+    max-width: 396px;
+  }
+}
 
 .step-title {
   letter-spacing: 0.5px;

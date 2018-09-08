@@ -6,7 +6,7 @@ class SessionForm extends React.Component {
     super(props);
 
     this.state = {
-      email: "",
+      email: "onionbiz@gmail.com",
       code: ""
     };
   }
@@ -14,7 +14,7 @@ class SessionForm extends React.Component {
   renderErrors() {
     if (this.props.errors) {
       console.log(this.props.errors);
-      
+
       // return (
       //   <ul className="errors">
       //     {this.props.errors.map((error, idx) => (
@@ -36,11 +36,25 @@ class SessionForm extends React.Component {
   componentWillMount() {
     this.props.clearErrors();
   }
+  componentDidMount(){
+    document.getElementById("text").value = "";
+  }
 
+  componentWillReceiveProps(){
+    document.getElementById("text").value = "";
+  }
+
+  
   handleSubmit = e => {
     e.preventDefault();
     const user = Object.assign({}, this.state);
-    this.props.processForm({ user });
+    console.log(user);
+
+    this.props.processForm(user);
+    if (this.props.formType === "signup") {
+      console.log("pushin login");
+      this.props.history.push("/login");
+    }
   };
 
   render() {
@@ -62,6 +76,7 @@ class SessionForm extends React.Component {
                 >
                   <div className="field">
                     <input
+                      id="text"
                       type="text"
                       aria-label="Enter your email"
                       name="alias"
@@ -116,6 +131,7 @@ class SessionForm extends React.Component {
                 >
                   <div className="field">
                     <input
+                      id="text"
                       type="text"
                       aria-label="confirmation code"
                       name="alias"

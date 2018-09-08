@@ -1,6 +1,7 @@
 const User = require("../models").User;
 const otplib = require("otplib");
 const email = require("./email.js");
+const bcrypt = require("bcrypt");
 // const nodemailer = require("nodemailer");
 
 module.exports = {
@@ -11,19 +12,29 @@ module.exports = {
     const validEmail = true;
     const html = "your jobCent confirmation code is: <b>" + token + "</b>";
     const otpExp = Date.now() + 300000;
+    const salt = bcrypt.genSaltSync();
+    const tokenHash = bcrypt.hashSync(token, salt);
+    
     // console.log("otp expiration time: " + otpExp);
+    // console.log(req.body);
+    const emailAddr = req.body.user.email;
+    // const emailAddr = req.body.email;
+    // console.log(req.body);
+    
 
-    User.findOne({ where: { email: req.body.email } }).then(user => {
+    User.findOne({ where: { email: emailAddr } }).then(user => {
+      
       if (user) {
         return user
           .update({
-            otpKey: otpKey,
+            otpKey: tokenHash,
             otpExp: otpExp
           })
           .then(user => {
             console.log(typeof otpKey + " " + otpKey);
             console.log(typeof token + " " + token);
-            const validCode = otplib.authenticator.check(token, otpKey);
+            // const validCode = otplib.authenticator.check(token, otpKey);
+            const validCode = bcrypt.compareSync(token, tokenHash);
             console.log("initially valid? " + validCode);
 
             // email.sendMail(html, res);
@@ -32,8 +43,8 @@ module.exports = {
           .catch(error => res.status(400).send(error));
       } else if (validEmail) {
         return User.create({
-          email: req.body.email,
-          otpKey: otpKey,
+          email: emailAddr,
+          otpKey: tokenHash,
           otpExp: otpExp
         })
           .then(user => {

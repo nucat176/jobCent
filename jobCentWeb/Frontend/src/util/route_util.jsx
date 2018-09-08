@@ -21,7 +21,7 @@ const Protected = ({component: Component, path, loggedIn}) => (
 
       } else {
         // origin = path;
-        return <Redirect to="/login" />;
+        return <Redirect to="/signup" />;
       }
     }} />
 );

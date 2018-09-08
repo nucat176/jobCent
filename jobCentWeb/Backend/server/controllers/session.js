@@ -1,16 +1,20 @@
 const User = require("../models").User;
 const otplib = require("./users.js").otplib;
+const bcrypt = require("bcrypt");
 
 module.exports = {
   create(req, res) {
-    User.findOne({ where: { email: req.body.email } })
+    const emailAddr = req.body.user.email;
+    User.findOne({ where: { email: emailAddr } })
       .then(user => {
         if (user) {
-          const confirmationCode = req.body.code;
+          const confirmationCode = req.body.user.code;
           const expired = Date.now() > user.otpExp;
+          // const validCode =
+          // user.otpKey == confirmationCode &&
+          // !expired;
           const validCode =
-          otplib.authenticator.check(confirmationCode, user.otpKey) &&
-          !expired;
+            bcrypt.compareSync(confirmationCode, user.otpKey) && !expired;
           console.log(typeof user.otpKey + " " + user.otpKey);
           console.log(typeof confirmationCode + " " + confirmationCode);
           console.log("expired? " + expired);
@@ -31,7 +35,7 @@ module.exports = {
           } else {
             res.status(400).send({
               errors: [
-                "That doesn't look like the code we sent to " + req.body.email
+                "That doesn't look like the code we sent to " + emailAddr
               ]
             });
           }
