@@ -647,7 +647,9 @@ a {
   font-size: inherit;
 }
 
-.name-text-field::placeholder {
+.transfer-input-field::placeholder, .name-text-field::placeholder {
   font-weight: 100px;
   opacity: 0.5;
 }
+
+

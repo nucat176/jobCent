@@ -19,7 +19,7 @@ export const MyProfile = () => (
         <div className="name-container">
          <div className="name-field">
          <div className="name-field-container">
-              <input type="text" value="Alpha Tester"aria-label="Display Name" name="displayName" autocomplete="off" spellcheck="false" autocapitalize="off" id="display_name" class="name-text-field" placeholder="Display Name"/>
+              <input type="text" defaultValue="Alpha Tester" aria-label="Display Name" name="displayName" autoComplete="off" spellCheck="false" autoCapitalize="off" id="display_name" className="name-text-field" placeholder="Display Name"/>
          </div>
          </div>
         </div>

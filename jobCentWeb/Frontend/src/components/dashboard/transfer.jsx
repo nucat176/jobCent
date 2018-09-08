@@ -14,8 +14,8 @@ export const Transfer = () => (
               <div className="currency-symbol">₿</div>
               <input
                 placeholder="0"
-                autocomplete="off"
-                maxlength="4"
+                autoComplete="off"
+                maxLength="4"
                 type="tel"
                 className="whole-amount-value"
               />
@@ -31,7 +31,7 @@ export const Transfer = () => (
                 className="transfer-input-field"
                 autoComplete="off"
                 spellCheck="false"
-                placeholder="Email"
+                placeholder="Email address"
                 autoCorrect="false"
                 autoCapitalize="off"
                 type="text"

@@ -85,7 +85,7 @@ export const Activity = () => (
             className="initiate-payment"
             onClick={this.props.handleInput("formType")}
           >
-            Create a Payment
+            Send a jobCent
           </a>
         </div>
       </div>

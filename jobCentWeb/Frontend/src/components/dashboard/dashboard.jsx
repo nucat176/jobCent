@@ -40,7 +40,7 @@ class Dashboard extends React.Component {
                   className="initiate-payment"
                   onClick={this.handleInput("formType")}
                 >
-                  Create a Payment
+                  Send a jobCent
                 </a>
               </div>
             </div>
