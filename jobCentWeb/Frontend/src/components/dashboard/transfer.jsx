@@ -15,7 +15,7 @@ export const Transfer = () => (
               <input
                 placeholder="0"
                 autoComplete="off"
-                maxLength="4"
+                maxLength="3"
                 type="tel"
                 className="whole-amount-value"
               />

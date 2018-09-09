@@ -12,23 +12,32 @@ class Landing extends React.Component {
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
   }
+  // componentDidUpdate() {
+  //   let hash = this.props.location.hash.replace('#', '');
+  //    if (hash) {
+  //        let node = React.findDOMNode(this.refs[hash]);
+  //        if (node) {
+  //            node.scrollIntoView();
+  //        }
+  //    }
+  // }
 
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
+  }
+
+  smoothScroll() {
+    document
+      .getElementById("about")
+      .scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   handleScroll() {
     let windowHeight = window.innerHeight;
     let scrollPosition = window.scrollY;
     let scrollPercentage = scrollPosition / windowHeight;
-    // if (window.pageYOffset > 0) {
-    // let divOffsetTop = document.getElementById("clear").offsetTop;
-
     let opacity = 1 - scrollPercentage;
     document.getElementById("opaque").style.opacity = opacity;
-    // console.log("page y offset: " + window.pageYOffset + " divOffsetTop: " + divOffsetTop + " opacity: " + opac);
-    //   console.log(opacity);
-    // }
   }
   render() {
     return (
@@ -43,25 +52,24 @@ class Landing extends React.Component {
               <div className="logo-title">jobCent</div>
             </div>
             <div>
-              <Link
-                smooth
-                to="#about"
+              <a
+                onClick={this.smoothScroll}
                 className="button button-round button-about"
               >
                 About
-              </Link>
-              <Link to="/signup" className="button button-round">
+              </a>
+              <Link to="/login" className="button button-round">
                 Sign In
               </Link>
             </div>
           </header>
           <div className="nav-arrow">
-            <Link smooth to="#about" className="arrow" />
+            <div id="arrow" onClick={this.smoothScroll} className="arrow" />
           </div>
         </section>
-        <section id="clear" className="scrolling height">
+        <section id="about" ref="about" className="scrolling height">
           <div className="about-jobcent">
-            <div id="about">
+            <div>
               <header className="about-header-bar">
                 <div className="ncent-logo">
                   {/* <svg className="app-icon" viewBox="0 0 64 64">
@@ -87,7 +95,9 @@ class Landing extends React.Component {
                   {/* <Link to="/test" className="test-button">
                     Loreum
                   </Link> */}
-                  <Link to="/signup" className="test-button">Sign In</Link>
+                  <Link to="/login" className="test-button">
+                    Sign In
+                  </Link>
                 </div>
               </header>
 

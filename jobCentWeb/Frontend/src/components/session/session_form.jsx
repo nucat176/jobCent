@@ -6,8 +6,9 @@ class SessionForm extends React.Component {
     super(props);
 
     this.state = {
-      email: "onionbiz@gmail.com",
-      code: ""
+      email: "",
+      code: "",
+      formType: "signup"
     };
   }
 
@@ -26,7 +27,6 @@ class SessionForm extends React.Component {
   }
 
   update(input) {
-    // console.log(this.state);
     return e =>
       this.setState({
         [input]: e.currentTarget.value
@@ -36,29 +36,31 @@ class SessionForm extends React.Component {
   componentWillMount() {
     this.props.clearErrors();
   }
-  componentDidMount(){
+
+  componentDidMount() {
     document.getElementById("text").value = "";
   }
 
-  componentWillReceiveProps(){
+  componentWillReceiveProps() {
     document.getElementById("text").value = "";
   }
 
-  
   handleSubmit = e => {
+    const processForm =
+      this.state.formType === "signup" ? this.props.signup : this.props.login;
     e.preventDefault();
     const user = Object.assign({}, this.state);
-    console.log(user);
 
-    this.props.processForm(user);
-    if (this.props.formType === "signup") {
-      console.log("pushin login");
-      this.props.history.push("/login");
-    }
+    processForm(user).then
+      if (this.state.formType === "signup") {
+        document.getElementById("text").value = "";
+        this.setState({ formType: "login" });
+      }
+  
   };
 
   render() {
-    if (this.props.formType === "signup") {
+    if (this.state.formType === "signup") {
       return (
         <div className="signup-form">
           <div className="signup-component">

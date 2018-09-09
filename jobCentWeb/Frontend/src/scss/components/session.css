@@ -124,7 +124,7 @@
   height: 55px;
   font-size: 18px;
   width: 100%;
-  background-color: #15d642;
+  background-color: #14d642;
   display: block;
   width: 100%;
   padding: 0px 20px;
@@ -132,7 +132,11 @@
   border: none;
   border-radius: 4px;
   color: #fff;
-  opacity: 0.8;
-  font-weight: 400;
+  opacity: 0.9;
+  font-weight: 300;
   -webkit-tap-highlight-color: transparent;
+}
+
+.theme-button:hover {
+  background-color: #16df45;
 }

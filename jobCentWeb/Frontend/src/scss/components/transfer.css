@@ -253,6 +253,7 @@ label {
 
 .transfer-input-field {
   border-radius: 0;
+  border: none;
   outline: #ccc solid 1px;
   /* -webkit-appearance: none; */
   line-height: 1;

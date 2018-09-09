@@ -14,7 +14,7 @@ class App extends Component {
         <Switch>
           <Route path="/dashboard" component={DashboardContainer} />
           {/* <ProtectedRoute path="/dashboard" component={DashboardContainer} /> */}
-          <AuthRoute path="/signup" component={SessionFormContainer} />
+          {/* <AuthRoute path="/signup" component={SessionFormContainer} /> */}
           <AuthRoute path="/login" component={SessionFormContainer} />
           <Route exact path="/" component={Landing} />
           <Redirect to="/" />
