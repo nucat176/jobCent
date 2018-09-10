@@ -11,6 +11,7 @@
   width: 100%;
   min-width: 320px;
   transition: background-color 0.1s 0s linear;
+  animation: fadeIn 0.2s ease-in both;
 }
 
 .transfer-content {
@@ -27,23 +28,22 @@
   -ms-flex-pack: center;
   justify-content: center;
   max-width: 100%;
-  opacity: 0;
-  visibility: hidden;
+  /* opacity: 0;
+  visibility: hidden; */
   transition: opacity 0.15s 0s linear, visibility 0s 0.15s linear;
-  transition-delay: 0s;
-  visibility: visible;
-  opacity: 1;
   background-color: #fff;
+  animation: fadeIn 0.2s ease-in both;
 }
+
+/* .transfer-content.show {
+  opacity: 1;
+  visibility: visible;
+} */
 
 .close-button {
   visibility: visible;
   flex-direction: column;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
   color: #999;
   cursor: pointer;
@@ -54,9 +54,10 @@
   padding: 20px;
   overflow: hidden;
   transition: opacity 0.15s 0 linear, visibility 0s 0.15s linear;
+  animation: fadeIn 0.2s ease-in both;
 }
 
-.close-button-icont {
+.close-button-icon {
   position: absolute;
   z-index: 1;
   display: block;
@@ -71,13 +72,13 @@
   position: absolute;
   z-index: 1;
   display: block;
-  content: "";
+  /* content: ""; */
   border-radius: 2px;
   width: 100%;
   height: 100%;
   background: currentColor;
   top: 50%;
-  margin-top: -2px;
+  /* margin-top: -2px; */
   height: 4px;
   color: #999;
   cursor: pointer;
@@ -89,6 +90,7 @@
   z-index: 1;
   -webkit-transform: rotate(45deg) translate3d(0, 0, 0);
   transform: rotate(45deg) translate3d(0, 0, 0);
+  animation: fadeIn 0.2s ease-in both;
 }
 
 .initiate-transfer {
@@ -119,10 +121,32 @@
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 6px;
+  animation: fadeIn 0.2s ease-in both;
 }
 
 .whole-amount-value {
-  text-rendering: auto;
+  margin: 0;
+  vertical-align: baseline;
+  display: block;
+  border: 0;
+  border-radius: 0;
+  outline: #ccc solid 1px;
+  -webkit-appearance: none;
+  width: 100%;
+  line-height: 1;
+  background: 0 0;
+  height: 110px;
+  color: #fff;
+  text-align: center;
+  outline: 0;
+  font-size: 75px;
+  transition: font-size 0.2s cubic-bezier(0.1, 0.1, 0.1, 1);
+  height: 55px;
+  color: #00c730;
+  height: 100px;
+  padding-left: 0px;
+  padding-right: 55px;
+  /* text-rendering: auto;
   color: initial;
   letter-spacing: normal;
   word-spacing: normal;
@@ -147,6 +171,7 @@
 
   width: 100%;
   max-width: 200px;
+  animation: fadeIn 0.2s ease-in both; */
 }
 
 .whole-amount-value::placeholder {
@@ -154,13 +179,39 @@
 }
 
 .currency-symbol {
-  font-size: 0.5em;
+  font-size: 50px;
   letter-spacing: 0;
   color: #00c730;
+  color: #204fc7;
+  padding-left: 17px;
 }
-
+.bottom-margin {
+  margin-bottom: 20px;
+}
 .display-amount-input {
-  text-align: center;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  min-height: 120px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  border: 1px solid;
+  border-radius: 4px;
+  overflow: hidden;
+  font-size: 18px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: -20px;
+  /* border-color: #00c730; */
+  /* text-align: center;
   font-size: 125px;
   font-weight: 300;
   max-height: 1em;
@@ -177,6 +228,7 @@
   margin-left: -0.25em;
   font-size: 120px;
   color: #00c730;
+  animation: fadeIn 0.2s ease-in both; */
 }
 
 /* .display-amount-fixed {
@@ -270,6 +322,10 @@ label {
 
 .transfer-button {
   background-color: #00c730;
+  background-color: #204fc7;
+}
+.transfer-button:hover {
+  background-color: #2859d6;
 }
 
 .anchor {
@@ -313,3 +369,11 @@ label {
   color: #e60000;
 }
 
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

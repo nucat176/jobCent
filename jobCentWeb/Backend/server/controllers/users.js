@@ -1,9 +1,11 @@
 const User = require("../models").User;
 const otplib = require("otplib");
 const email = require("./email.js");
+const awsEmail = require("./awsEmail.js");
 const bcrypt = require("bcrypt");
 const keys = require("./secret.js");
-const nCentSDK = require("../../../../../ncent-SDK.js/source/ncentSDK");
+const aws = require("aws-sdk");
+const nCentSDK = require("ncent-sandbox-sdk");
 const nCentSDKInstance = new nCentSDK();
 
 module.exports = {
@@ -17,13 +19,12 @@ module.exports = {
     const otpExp = Date.now() + 300000;
     const salt = bcrypt.genSaltSync();
     const tokenHash = bcrypt.hashSync(token, salt);
-    // const emailAddr = req.body.user.email;
-    // const otpReq = req.body.user.otpReq;
-    // vars below for testing
-    const otpReq = req.body.otpReq;
-    const jobCents = req.body.jobCents;
-    const emailAddr = req.body.email;
-    
+    const emailAddr = req.body.user.email;
+    const otpReq = req.body.user.otpReq;
+    // variables below for testing
+    // const otpReq = req.body.otpReq;
+    // const emailAddr = req.body.email;
+    // const jobCents = req.body.jobCents;
 
     User.findOne({ where: { email: emailAddr } }).then(user => {
       if (user) {
@@ -39,6 +40,8 @@ module.exports = {
             console.log("initially valid? " + validCode);
 
             // email.sendMail(keys.from, keys.to, html);
+            awsEmail.sendMail(keys.from, emailAddr, token);
+
             res.status(200).send(user.email);
           })
           .catch(error => res.status(400).send(error));
@@ -47,13 +50,14 @@ module.exports = {
         if (otpReq) {
           return User.create({
             email: emailAddr,
+            jobCents: "0",
             otpKey: tokenHash,
             otpExp: otpExp
           })
             .then(user => {
               data.user = user;
               console.log(user);
-  
+
               const wallet = nCentSDKInstance.createWalletAddress();
               data.privateKey = wallet.secret();
               data.publicKey = wallet.publicKey();
@@ -69,19 +73,20 @@ module.exports = {
             .then(user => {
               const validCode = otplib.authenticator.check(token, otpKey);
               console.log("initially valid? " + validCode);
-  
+
               // email.sendMail(keys.from, keys.to, html);
+              awsEmail.sendMail(keys.from, emailAddr, html);
               res.status(201).send(user);
             })
             .catch(error => {
               console.log(error);
-  
+
               res.status(400).send(error);
             });
         } else {
           return User.create({
             email: emailAddr,
-            jobCents: jobCents,
+            jobCents: "0"
           })
             .then(user => {
               data.user = user;
@@ -114,34 +119,65 @@ module.exports = {
   },
 
   getOne(req, res) {
-    // const user = req.session.user;
+    let data = {};
+    const tokenType = "d3c5add3-382e-4505-815b-72221c7f0c45";
     // new Promise(function(resolve, reject) {
-      
-      // nCentSDKInstance.getTokenBalance(
-      //   "GCALDTPTVOK6QXJOZ7PKZX2I3T7DZOOHFVUQM67VY44LOIOEW6VSLFWR",
-      //   "9982fd4f-ec11-4a28-96d2-b34036e2e03b",
-      //   resolve,
-      //   reject
-      // );
+    //   nCentSDKInstance.getAllBalances(
+    //     "GA545ZHIHD62GQ5OR3RX6YFZ4FUP2XXHMLLT4PFLAUMZKXNOXIIXCDQD",
+    //     resolve,
+    //     reject
+    //   );
     // })
-    User.findOne({ where: { id: req.params.id } })
+    const user = req.session.user;
+    new Promise(function(resolve, reject) {
+      nCentSDKInstance.getTokenBalance(
+        user.publicKey,
+        tokenType,
+        resolve,
+        reject
+      );
+    })
+      .then(token => {
+        data.token = token;
+        return User.findOne({
+          where: { id: req.params.id }
+        });
+      })
       .then(user => {
-        // console.log(token);
-
-        // console.log(token.data[0]);
-        // console.log(token.data[0].balance);
-        // this.setState({ jobCents: token.balance });
-
-        console.log(user.dataValues);
-        res.status(200).send({ balance: 100 });
+        return user.update({
+          jobCents: data.token.data[0].balance
+        });
+      })
+      .then(user => {
+        data.user = user;
+        console.log(data.token.data[0].balance);
+        res.status(200).send({ balance: data.token.data[0].balance });
       })
       .catch(error => {
         console.log(error);
-        res.status(400).send("error");
+        res.status(400).send({ balance: 0 });
       });
     // in the future update this to use session tokens for search
     // User.findOne({ where: { id: user.id } }).then(user => {
 
     // })
+  },
+  update(req, res) {
+    console.log(req);
+
+    User.update(
+      {
+        name: req.body.user.name
+      },
+      { where: { email: req.body.user.from } }
+    )
+      .then(user => {
+        console.log(user);
+        res.status(200).send(user);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(400).send(err);
+      });
   }
 };

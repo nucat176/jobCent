@@ -2,6 +2,7 @@ const nodemailer = require("nodemailer");
 const keys = require("./secret");
 module.exports = {
   sendMail(from, to, html) {
+   
     let smtpTransport = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 465,

@@ -14,8 +14,11 @@ module.exports = app => {
   app.post("/api/session", sessionController.create);
   // get token balance and user data
   app.get("/api/users/:id", usersController.getOne);
+  app.put("/api/users/:id", usersController.update);
   // logout user
   app.delete("/api/session", sessionController.destroy);
   // create new transfer
   app.post("/api/transfers", transfersController.create);
+  app.get("/api/transfers/:id", transfersController.findAll);
+  // app.get("/api/transfers/:to", transfersController.list);
 };

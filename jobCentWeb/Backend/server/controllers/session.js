@@ -11,8 +11,6 @@ module.exports = {
           const expired = Date.now() > user.otpExp;
           const validCode =
             bcrypt.compareSync(confirmationCode, user.otpKey) && !expired;
-          console.log(typeof user.otpKey + " " + user.otpKey);
-          console.log(typeof confirmationCode + " " + confirmationCode);
           console.log("expired? " + expired);
           console.log("is the code valid? " + validCode);
           if (validCode) {
@@ -23,8 +21,8 @@ module.exports = {
                 active: true
               })
               .then(user => {
-                const { id, email, publicKey } = user.dataValues;
-                const userInfo = { id, email, publicKey };
+                const { id, email, publicKey, name } = user.dataValues;
+                const userInfo = { id, email, publicKey, name };
                 req.session.user = userInfo;
                 res.send({ user: userInfo });
               });

@@ -36,7 +36,7 @@
   /* background: #0bb634; */
   position: -webkit-sticky;
   position: sticky;
-  z-index: 2;
+  z-index: 1;
   bottom: 0;
   width: 100%;
   -webkit-order: 2;
@@ -151,8 +151,12 @@
   max-width: 53px;
   justify-content: center;
   touch-action: manipulation;
+  color: #6683ce;
   /* color: #10EE3C; */
-  color: white;
+  /* color: white; */
+}
+.nav-item.active {
+  color: #fff;
 }
 
 /* .nav-item .active {
@@ -192,7 +196,7 @@ a {
 
 .yield-content {
   position: relative;
-  z-index: 1;
+  /* z-index: 1; */
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -219,6 +223,8 @@ a {
 }
 
 .activity-list-container {
+  display: flex;
+  justify-content: center;
   min-height: 0;
   min-width: 0;
   -webkit-flex: 1 0 auto;
@@ -229,7 +235,7 @@ a {
   left: 0;
   right: 0;
   bottom: 0;
-  top: 70px;
+  /* top: 70px; */
   max-height: 100%;
   max-height: calc(100% - 70px);
 }
@@ -334,8 +340,9 @@ a {
 .modal-window-content {
   position: relative;
   z-index: 1;
-  /* flex: 1 0 auto; */
-  flex: 0 0 auto;
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -647,9 +654,8 @@ a {
   font-size: inherit;
 }
 
-.transfer-input-field::placeholder, .name-text-field::placeholder {
+.transfer-input-field::placeholder,
+.name-text-field::placeholder {
   font-weight: 100px;
   opacity: 0.5;
 }
-
-
