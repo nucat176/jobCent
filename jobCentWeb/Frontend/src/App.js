@@ -12,8 +12,8 @@ class App extends Component {
   render() {
     return <div className="App">
         <Switch>
-          <Route path="/dashboard" component={DashboardContainer} />
-          {/* <ProtectedRoute path="/dashboard" component={DashboardContainer} /> */}
+          {/* <Route path="/dashboard" component={DashboardContainer} /> */}
+          <ProtectedRoute path="/dashboard" component={DashboardContainer} />
           {/* <AuthRoute path="/signup" component={SessionFormContainer} /> */}
           <AuthRoute path="/login" component={SessionFormContainer} />
           <Route exact path="/" component={Landing} />

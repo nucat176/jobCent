@@ -11,6 +11,9 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
+      jobCents: {
+        type: Sequelize.STRING
+      },
       publicKey: {
         type: Sequelize.STRING
       },

@@ -8,6 +8,7 @@ class SessionForm extends React.Component {
     this.state = {
       email: "",
       code: "",
+      otpReq: true,
       formType: "signup"
     };
   }
@@ -51,12 +52,14 @@ class SessionForm extends React.Component {
     e.preventDefault();
     const user = Object.assign({}, this.state);
 
-    processForm(user).then
+    processForm(user).then(user => {
+      console.log(user);
+
       if (this.state.formType === "signup") {
         document.getElementById("text").value = "";
         this.setState({ formType: "login" });
       }
-  
+    });
   };
 
   render() {

@@ -1,9 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import "../../scss/components/dashboard.css";
-import { Activity } from "./activity";
 import { MyJobCents } from "./myJobCents";
 import { MyProfile } from "./myProfile";
-import { SignOut } from "./signOut";
 import { Transfer } from "./transfer";
 
 class Dashboard extends React.Component {
@@ -17,42 +15,14 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-   
     this.props.fetchBalance(this.props.currentUser).then(res => {
       console.log(res.balance.data.balance);
       let balance = res.balance.data.balance;
       if (balance) {
-        this.setState({jobCents: balance});
+        this.setState({ jobCents: balance });
       }
     });
-    // console.log(this.props.currentUser);
-
-    
-
-    // this.getJobCents();
-    // console.log(this.state);
   }
-
-  // getJobCents() {
-  //   const user = this.props.currentUser;
-  //   new Promise(function(resolve, reject) {
-  //     nCentSDKInstance.getTokenBalance(
-  //       user.publicKey,
-  //       "818abb73-5ab0-4763-861e-0fcd97cc0109",
-  //       resolve,
-  //       reject
-  //     );
-  //   })
-  //     .then(token => {
-  //       console.log(token);
-  //       this.setState({ jobCents: token.balance });
-  //       return token;
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-
-  //     });
-  // }
 
   handleInput(key) {
     return e => this.setState({ [key]: e.currentTarget.title });
@@ -89,7 +59,6 @@ class Dashboard extends React.Component {
     }
   }
   jobCentsTab() {
-  
     if (this.state.formType === "jobCents") {
       return <MyJobCents jobCents={this.state.jobCents} />;
     }
