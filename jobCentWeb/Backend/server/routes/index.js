@@ -9,6 +9,7 @@ module.exports = app => {
     })
   );
 
+  app.get("/api/user/:id", usersController.getOne);
   app.post("/api/user", usersController.create);
   app.post("/api/session", sessionController.create);
   app.delete("/api/session", sessionController.destroy);

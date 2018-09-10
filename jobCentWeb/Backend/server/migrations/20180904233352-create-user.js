@@ -11,6 +11,12 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
+      publicKey: {
+        type: Sequelize.STRING
+      },
+      privateKey: {
+        type: Sequelize.STRING
+      },
       otpKey: {
         type: Sequelize.STRING
       },

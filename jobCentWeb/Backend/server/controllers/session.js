@@ -1,5 +1,4 @@
 const User = require("../models").User;
-const otplib = require("./users.js").otplib;
 const bcrypt = require("bcrypt");
 
 module.exports = {
@@ -10,9 +9,6 @@ module.exports = {
         if (user) {
           const confirmationCode = req.body.user.code;
           const expired = Date.now() > user.otpExp;
-          // const validCode =
-          // user.otpKey == confirmationCode &&
-          // !expired;
           const validCode =
             bcrypt.compareSync(confirmationCode, user.otpKey) && !expired;
           console.log(typeof user.otpKey + " " + user.otpKey);
@@ -27,8 +23,8 @@ module.exports = {
                 active: true
               })
               .then(user => {
-                const { id, email } = user.dataValues;
-                const userInfo = { id, email };
+                const { id, email, publicKey } = user.dataValues;
+                const userInfo = { id, email, publicKey };
                 req.session.user = userInfo;
                 res.send({ user: userInfo });
               });

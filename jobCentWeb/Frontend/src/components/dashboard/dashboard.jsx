@@ -9,11 +9,50 @@ import { Transfer } from "./transfer";
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { formType: "Activity" };
+    this.state = { formType: "Activity", jobCents: "0" };
     this.handleInput = this.handleInput.bind(this);
     this.logOut = this.logOut.bind(this);
+    this.jobCentsTab = this.jobCentsTab.bind(this);
     // this.reverseState.bind(this);
   }
+
+  componentDidMount() {
+   
+    this.props.fetchBalance(this.props.currentUser).then(res => {
+      console.log(res.balance.data.balance);
+      let balance = res.balance.data.balance;
+      if (balance) {
+        this.setState({jobCents: balance});
+      }
+    });
+    // console.log(this.props.currentUser);
+
+    
+
+    // this.getJobCents();
+    // console.log(this.state);
+  }
+
+  // getJobCents() {
+  //   const user = this.props.currentUser;
+  //   new Promise(function(resolve, reject) {
+  //     nCentSDKInstance.getTokenBalance(
+  //       user.publicKey,
+  //       "818abb73-5ab0-4763-861e-0fcd97cc0109",
+  //       resolve,
+  //       reject
+  //     );
+  //   })
+  //     .then(token => {
+  //       console.log(token);
+  //       this.setState({ jobCents: token.balance });
+  //       return token;
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+
+  //     });
+  // }
 
   handleInput(key) {
     return e => this.setState({ [key]: e.currentTarget.title });
@@ -50,8 +89,9 @@ class Dashboard extends React.Component {
     }
   }
   jobCentsTab() {
+  
     if (this.state.formType === "jobCents") {
-      return <MyJobCents />;
+      return <MyJobCents jobCents={this.state.jobCents} />;
     }
   }
   profileTab() {

@@ -10,6 +10,12 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING 
     },
+    publicKey: {
+      type: DataTypes.STRING
+    },
+    privateKey: {
+      type: DataTypes.STRING
+    },
     otpKey: {
       type: DataTypes.STRING
     },
