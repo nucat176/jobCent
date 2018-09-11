@@ -10,7 +10,7 @@ module.exports = {
     const from = req.body.from;
     const to = req.body.to;
     const amount = parseInt(req.body.amount);
-    // const tokenType = "b3ef967c-e838-4690-9a71-a4edda107241";
+
     const tokenType = "d3c5add3-382e-4505-815b-72221c7f0c45";
     let fromUser;
     let toUser;
@@ -18,14 +18,12 @@ module.exports = {
     let data = {};
     User.findOne({ where: { email: from } })
       .then(user => {
-        // find current balance through sdk using user.publicKey and assign that to fromBalance.
         fromUser = user;
         fromBalance = parseInt(user.jobCents);
         console.log(fromBalance);
         console.log(fromBalance > amount);
 
         return User.findOne({ where: { email: to } });
-        // return User.findOne({ where: { id: to } });
       })
       .then(user => {
         toUser = user;
@@ -92,8 +90,8 @@ module.exports = {
                               jobCents: data.receiver.balance
                             })
                             .then(touser => {
-                                data.toUser = touser;
-                              //   const html = <h1>hello</h1>
+                              data.toUser = touser;
+
                               awsEmail.sendMail(
                                 data.fromUser.email,
                                 data.toUser.email
@@ -154,12 +152,11 @@ module.exports = {
                         jobCents: data.receiver.balance
                       })
                       .then(touser => {
-                          data.toUser = touser;
-                        //   const html = <h1>hello</h1>
+                        data.toUser = touser;
+
                         awsEmail.sendMail(
                           data.fromUser.email,
-                          data.toUser.email,
-                          
+                          data.toUser.email
                         );
                         data.toUser = touser;
                         res.status(200).send(data);
@@ -183,8 +180,8 @@ module.exports = {
       });
   },
   findAll(req, res) {
-      console.log(req.session);
-      const email = req.session.user.email;
+    console.log(req.session);
+    const email = req.session.user.email;
     let data = {};
     Transfer.findAll({
       where: {
@@ -192,8 +189,8 @@ module.exports = {
       }
     })
       .then(sent => {
-          console.log("sent tokens");
-          
+        console.log("sent tokens");
+
         console.log(sent);
         data.sent = sent;
         return Transfer.findAll({
@@ -203,8 +200,8 @@ module.exports = {
         });
       })
       .then(received => {
-          console.log("received tokens");
-          
+        console.log("received tokens");
+
         console.log(received);
         data.received = received;
         res.status(200).send(data);

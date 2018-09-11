@@ -20,17 +20,17 @@ const Protected = ({component: Component, path, loggedIn}) => (
         return <Component {...props} />;
 
       } else {
-        // origin = path;
+     
         return <Redirect to="/signup" />;
       }
     }} />
 );
 
 const mapStateToProps = state => {
-    // state.origin = null;
+  
   return ({
     loggedIn: Boolean(state.session.currentUser),
-    // origin: state.origin
+  
   });
 };
 

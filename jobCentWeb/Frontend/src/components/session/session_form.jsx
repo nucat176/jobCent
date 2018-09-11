@@ -17,13 +17,6 @@ class SessionForm extends React.Component {
     if (this.props.errors) {
       console.log(this.props.errors);
 
-      // return (
-      //   <ul className="errors">
-      //     {this.props.errors.map((error, idx) => (
-      //       <li key={`${idx}`}>{error}</li>
-      //     ))}
-      //   </ul>
-      // );
     }
   }
 

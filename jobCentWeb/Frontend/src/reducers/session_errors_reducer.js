@@ -8,7 +8,6 @@ export default (state = [], action) => {
         case CLEAR_ERRORS:
             return null;
         case RECEIVE_SESSION_ERRORS:
-            // console.log(action);
             
             return action;
         default:

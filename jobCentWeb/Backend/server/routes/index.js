@@ -19,6 +19,7 @@ module.exports = app => {
   app.delete("/api/session", sessionController.destroy);
   // create new transfer
   app.post("/api/transfers", transfersController.create);
+  // fetch transaction history for a given user
   app.get("/api/transfers/:id", transfersController.findAll);
-  // app.get("/api/transfers/:to", transfersController.list);
+  
 };

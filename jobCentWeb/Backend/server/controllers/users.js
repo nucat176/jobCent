@@ -21,10 +21,7 @@ module.exports = {
     const tokenHash = bcrypt.hashSync(token, salt);
     const emailAddr = req.body.user.email;
     const otpReq = req.body.user.otpReq;
-    // variables below for testing
-    // const otpReq = req.body.otpReq;
-    // const emailAddr = req.body.email;
-    // const jobCents = req.body.jobCents;
+   
 
     User.findOne({ where: { email: emailAddr } }).then(user => {
       if (user) {
@@ -39,8 +36,8 @@ module.exports = {
             const validCode = bcrypt.compareSync(token, tokenHash);
             console.log("initially valid? " + validCode);
 
-            // email.sendMail(keys.from, keys.to, html);
-            // awsEmail.sendMail(keys.from, emailAddr, token);
+            
+            awsEmail.sendMail(keys.from, emailAddr, token);
 
             res.status(200).send(user.email);
           })
@@ -74,8 +71,7 @@ module.exports = {
               const validCode = otplib.authenticator.check(token, otpKey);
               console.log("initially valid? " + validCode);
 
-              // email.sendMail(keys.from, keys.to, html);
-              // awsEmail.sendMail(keys.from, emailAddr, html);
+              awsEmail.sendMail(keys.from, emailAddr, html);
               res.status(201).send(user);
             })
             .catch(error => {
@@ -121,13 +117,7 @@ module.exports = {
   getOne(req, res) {
     let data = {};
     const tokenType = "d3c5add3-382e-4505-815b-72221c7f0c45";
-    // new Promise(function(resolve, reject) {
-    //   nCentSDKInstance.getAllBalances(
-    //     "GA545ZHIHD62GQ5OR3RX6YFZ4FUP2XXHMLLT4PFLAUMZKXNOXIIXCDQD",
-    //     resolve,
-    //     reject
-    //   );
-    // })
+
     const user = req.session.user;
     new Promise(function(resolve, reject) {
       nCentSDKInstance.getTokenBalance(
@@ -158,9 +148,7 @@ module.exports = {
         res.status(400).send(error.response.data);
       });
     // in the future update this to use session tokens for search
-    // User.findOne({ where: { id: user.id } }).then(user => {
-
-    // })
+    
   },
   update(req, res) {
     console.log(req);

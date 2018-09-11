@@ -1,7 +1,7 @@
 import React from "react";
 import "../../scss/components/dashboard.css";
 import { MyJobCents } from "./myJobCents";
-import { MyProfile } from "./myProfile";
+// import { MyProfile } from "./myProfile";
 import Transfer from "./transfer";
 
 class Dashboard extends React.Component {
@@ -22,7 +22,6 @@ class Dashboard extends React.Component {
     this.jobCentsTab = this.jobCentsTab.bind(this);
     this.handleTransfer = this.handleTransfer.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
-    // this.reverseState.bind(this);
   }
 
   componentDidMount() {
@@ -143,45 +142,6 @@ class Dashboard extends React.Component {
             </div>
           </div>
         </section>);
-      // if(this.props.currentUser) {
-
-      //   let user = this.props.currentUser;
-      //   this.props
-      //     .fetchHistory(user)
-      //     .then(res => {
-      //       return (
-      //         <section className="flex-container activity-history">
-      //           <div className=" activity-list-container  ">
-      //             {" "}
-      //             <div id="ember2453" className="activity-list-sections ">
-      //               {" "}
-      //               <div className="activity-no-results">
-      //                 <div className="inline-svg-two ">
-      //                   <svg
-      //                     xmlns="http://www.w3.org/2000/svg"
-      //                     viewBox="0 0 84 84"
-      //                   >
-      //                     <path d="M80 42c0 20.949-17.051 38-38 38S4 62.949 4 42 21.051 4 42 4s38 17.051 38 38zm4 0C84 18.842 65.158 0 42 0S0 18.842 0 42s18.842 42 42 42 42-18.842 42-42z" />
-      //                     <path d="M40 22V46.865l1.075.56 16 8.348 1.85-3.546-16-8.348L44 45.652V22h-4z" />
-      //                   </svg>
-      //                 </div>
-      //                 <h3 className="title-activity">No Activity Yet</h3>
-      //                 <a
-      //                   title="New"
-      //                   className="initiate-payment"
-      //                   onClick={this.handleInput("formType")}
-      //                 >
-      //                   Send a jobCent
-      //                 </a>
-      //               </div>
-      //             </div>
-      //           </div>
-      //         </section>
-      //       );
-      //     })
-      //     .catch(err => {
-      //       console.log(err);
-      //     });
       
     }
   }
@@ -192,7 +152,7 @@ class Dashboard extends React.Component {
   }
   profileTab() {
     if (this.state.formType === "Settings") {
-      // return <MyProfile />;
+  
       return (
         <div className="edit-settings-top">
           <div className="edit-header-top">
@@ -290,8 +250,7 @@ class Dashboard extends React.Component {
       <div>
         <div className="jobCent-home">
           {" "}
-          {/* <div className="cookie-banner " /> */}
-          {/* <div className="full-screen-payment-blockers" /> */}
+       
           <div className="flex-container-home ">
             <div className="layout-account-new flex-container-home ">
               <div className="account-navigation-bar flex-container-home">
@@ -432,11 +391,7 @@ class Dashboard extends React.Component {
                 {this.profileTab()}
                 {this.signOutTab(this.props.logout)}
                 {this.transferTab()}
-                {/* <Activity/> */}
-                {/* <MyJobCents/> */}
-                {/* <MyProfile/> */}
-                {/* <SignOut/> */}
-                {/* <Transfer /> */}
+ 
               </section>
             </div>
           </div>

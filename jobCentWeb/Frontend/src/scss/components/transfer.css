@@ -146,32 +146,7 @@
   height: 100px;
   padding-left: 0px;
   padding-right: 55px;
-  /* text-rendering: auto;
-  color: initial;
-  letter-spacing: normal;
-  word-spacing: normal;
-  text-transform: none;
-  border-radius: 0;
-  margin-top: -0.1375em;
-  text-indent: -0.02667em;
-  position: relative;
-  z-index: 1;
-  border: none;
-  outline: 0;
-  color: #fff;
-  background: 0 0;
-  display: inline-block;
-  height: auto;
-  padding: 0;
-  font: inherit;
-  letter-spacing: inherit;
-  width: 0;
-  -webkit-appearance: none;
-  color: #00c730;
-
-  width: 100%;
-  max-width: 200px;
-  animation: fadeIn 0.2s ease-in both; */
+  
 }
 
 .whole-amount-value::placeholder {
@@ -210,65 +185,10 @@
   border: 1px solid #ccc;
   border-radius: 6px;
   margin-bottom: -20px;
-  /* border-color: #00c730; */
-  /* text-align: center;
-  font-size: 125px;
-  font-weight: 300;
-  max-height: 1em;
-  overflow: hidden;
-  letter-spacing: -0.02667em;
-  margin-bottom: 0;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  -webkit-justify-content: center;
-  justify-content: center;
-  margin-left: -0.25em;
-  font-size: 120px;
-  color: #00c730;
-  animation: fadeIn 0.2s ease-in both; */
+  
 }
 
-/* .display-amount-fixed {
-  text-align: center;
-  font-size: 125px;
-  font-weight: 300;
-  max-height: 1em;
-  overflow: hidden;
-  letter-spacing: -0.02667em;
-  margin-bottom: 0;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: flex-start;
-  -moz-align-items: flex-start;
-  -ms-align-items: flex-start;
-  -ms-flex-align: start;
-  align-items: flex-start;
-  -ms-flex-pack: center;
-  -ms-box-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  margin-left: -0.25em;
-  color: #00c730;
 
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  min-height: 120px;
-  margin-bottom: 20px;
-} */
 
 .display-amount-fixed {
   display: -webkit-flex;

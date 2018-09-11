@@ -21,11 +21,10 @@ export const login = user => dispatch =>
   ApiUtil.login(user).then(
     userP => {
       console.log(userP.data.user);
-      
-      dispatch(receiveCurrentUser(userP.data.user))},
-    err => {
-      // console.log(err.response.data);
 
+      dispatch(receiveCurrentUser(userP.data.user));
+    },
+    err => {
       dispatch(receiveErrors(err.response.data));
     }
   );
@@ -37,6 +36,4 @@ export const signup = user => dispatch =>
   ApiUtil.signup(user).then(
     userP => userP,
     err => dispatch(receiveErrors(err.response.data))
-);
-
-// err => (dispatch(receiveErrors(err.responseJSON))))
+  );
