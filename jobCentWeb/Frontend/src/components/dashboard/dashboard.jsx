@@ -107,6 +107,14 @@ class Dashboard extends React.Component {
 
   activityTab() {
     if (this.state.formType === "Activity") {
+      if (this.props.fetchHistory && this.props.currentUser) {
+        console.log("fetching history..");
+        console.log(this.props.currentUser);
+        
+        this.props.fetchHistory(this.props.currentUser).then(res => {
+          
+        })
+      }
       return (
         <section className="flex-container activity-history">
           <div className=" activity-list-container  ">
@@ -191,7 +199,7 @@ class Dashboard extends React.Component {
             <div className="customer-profile-simple-top">
               <i className="customer-avatar-top">
                 <div className="initial-placeholder-top">
-                  {this.state.name[0]}
+                  {this.state.name ? this.state.name[0] : "A"}
                 </div>
                 <div />
               </i>

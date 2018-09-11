@@ -40,7 +40,7 @@ module.exports = {
             console.log("initially valid? " + validCode);
 
             // email.sendMail(keys.from, keys.to, html);
-            awsEmail.sendMail(keys.from, emailAddr, token);
+            // awsEmail.sendMail(keys.from, emailAddr, token);
 
             res.status(200).send(user.email);
           })
@@ -75,7 +75,7 @@ module.exports = {
               console.log("initially valid? " + validCode);
 
               // email.sendMail(keys.from, keys.to, html);
-              awsEmail.sendMail(keys.from, emailAddr, html);
+              // awsEmail.sendMail(keys.from, emailAddr, html);
               res.status(201).send(user);
             })
             .catch(error => {
@@ -154,8 +154,8 @@ module.exports = {
         res.status(200).send({ balance: data.token.data[0].balance });
       })
       .catch(error => {
-        console.log(error);
-        res.status(400).send({ balance: 0 });
+        console.log(error.response.data);
+        res.status(400).send(error.response.data);
       });
     // in the future update this to use session tokens for search
     // User.findOne({ where: { id: user.id } }).then(user => {

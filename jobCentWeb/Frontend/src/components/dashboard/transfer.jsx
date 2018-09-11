@@ -1,5 +1,6 @@
 import React from "react";
 import "../../scss/components/transfer.css";
+import x from "../../img/x.png";
 
 export default class Transfer extends React.Component {
   constructor(props) {
@@ -9,7 +10,8 @@ export default class Transfer extends React.Component {
     return <div className="fs-transfer-sheet">
         <div className="transfer-content">
           <div title="jobCents" className="close-button" onClick={this.props.handleInput("formType")}>
-            <i className="close-button-icon" />
+            {/* <i className="close-button-icon" /> */}
+            <img src={x} alt=""/>
           </div>
           <form autoComplete="off" spellCheck="true" noValidate="true" onSubmit={this.props.handleTransfer}>
             <div className="initiate-transfer">

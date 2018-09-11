@@ -12,7 +12,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   fetchBalance: user => dispatch(fetchBalance(user)),
-  fetchHistory: () => dispatch(fetchHistory()),
+  fetchHistory: user => dispatch(fetchHistory(user)),
   saveName: user => dispatch(saveName(user)),
   sendJobCents: user => dispatch(sendJobCents(user)),
   logout: () => dispatch(logout())

@@ -53,8 +53,6 @@ class SessionForm extends React.Component {
     const user = Object.assign({}, this.state);
 
     processForm(user).then(user => {
-      console.log(user);
-
       if (this.state.formType === "signup") {
         document.getElementById("text").value = "";
         this.setState({ formType: "login" });

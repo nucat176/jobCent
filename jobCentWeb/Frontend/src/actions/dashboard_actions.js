@@ -1,7 +1,8 @@
 import * as ApiUtil from "../util/session_api_util";
 export const RECEIVE_BALANCE = "RECEIVE_BALANCE";
 export const RECEIVE_TRANSFER = "RECEIVE_TRANSFER";
-export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
+export const RECEIVE_DASH_ERRORS = "RECEIVE_DASH_ERRORS";
+export const RECEIVE_HISTORY = "RECEIVE_HISTORY";
 
 export const receiveBalance = balance => ({
   type: RECEIVE_BALANCE,
@@ -9,7 +10,7 @@ export const receiveBalance = balance => ({
 });
 
 export const receiveErrors = errors => ({
-  type: RECEIVE_SESSION_ERRORS,
+  type: RECEIVE_DASH_ERRORS,
   errors
 });
 
@@ -18,12 +19,16 @@ export const receiveTransfer = data => ({
   data
 });
 
+export const receiveHistory = history => ({
+  type: RECEIVE_HISTORY,
+  history
+});
+
 export const fetchBalance = user => dispatch =>
   ApiUtil.fetchBalance(user).then(
     balance => dispatch(receiveBalance(balance)),
     err => {
       console.log(err);
-
       dispatch(receiveErrors(err));
     }
   );
@@ -45,9 +50,10 @@ export const saveName = user => dispatch =>
       dispatch(receiveErrors(err));
     }
   );
+
 export const fetchHistory = user => dispatch =>
   ApiUtil.fetchHistory(user).then(
-    data => console.log(data),
+    data => dispatch(receiveHistory(data)),
     err => {
       console.log(err);
       dispatch(receiveErrors(err));

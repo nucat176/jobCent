@@ -50,6 +50,8 @@ module.exports = {
             .then(user => {
               toUser = user;
               console.log(fromUser);
+              console.log("toUser#########");
+
               console.log(toUser);
 
               if (fromBalance >= amount) {
@@ -90,6 +92,7 @@ module.exports = {
                               jobCents: data.receiver.balance
                             })
                             .then(touser => {
+                                data.toUser = touser;
                               //   const html = <h1>hello</h1>
                               awsEmail.sendMail(
                                 data.fromUser.email,
@@ -151,8 +154,13 @@ module.exports = {
                         jobCents: data.receiver.balance
                       })
                       .then(touser => {
+                          data.toUser = touser;
                         //   const html = <h1>hello</h1>
-                        //   email.sendMail(data.fromUser.email, data.toUser.email, html);
+                        awsEmail.sendMail(
+                          data.fromUser.email,
+                          data.toUser.email,
+                          
+                        );
                         data.toUser = touser;
                         res.status(200).send(data);
                       })
@@ -175,22 +183,28 @@ module.exports = {
       });
   },
   findAll(req, res) {
+      console.log(req.session);
+      const email = req.session.user.email;
     let data = {};
     Transfer.findAll({
       where: {
-        from: req.body.user.email
+        from: email
       }
     })
       .then(sent => {
+          console.log("sent tokens");
+          
         console.log(sent);
         data.sent = sent;
         return Transfer.findAll({
           where: {
-            to: req.body.user.email
+            to: email
           }
         });
       })
       .then(received => {
+          console.log("received tokens");
+          
         console.log(received);
         data.received = received;
         res.status(200).send(data);
